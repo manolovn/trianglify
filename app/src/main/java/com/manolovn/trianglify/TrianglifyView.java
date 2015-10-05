@@ -96,8 +96,7 @@ public class TrianglifyView extends View {
         points = pointGenerator.generatePoints(width, height);
 
         triangulator = new DelaunayTriangulator(points);
-        triangulator.triangulate();
-        triangles = triangulator.getTriangles();
+        triangles = triangulator.triangulate();
     }
 
     @Override

@@ -25,7 +25,7 @@ public class DelaunayTriangulator implements Triangulator {
     }
 
     @Override
-    public void triangulate() {
+    public Vector<Triangle> triangulate() {
         triangulation = new Triangulation();
 
         /**
@@ -103,10 +103,7 @@ public class DelaunayTriangulator implements Triangulator {
         triangulation.removeTrianglesUsing(superTriangle.a);
         triangulation.removeTrianglesUsing(superTriangle.b);
         triangulation.removeTrianglesUsing(superTriangle.c);
-    }
 
-    @Override
-    public Vector<Triangle> getTriangles() {
         return triangulation.getTriangles();
     }
 

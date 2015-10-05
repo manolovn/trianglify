@@ -9,7 +9,5 @@ import java.util.Vector;
  */
 public interface Triangulator {
 
-    void triangulate();
-
-    Vector<Triangle> getTriangles();
+    Vector<Triangle> triangulate();
 }
