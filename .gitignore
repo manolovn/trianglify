@@ -1,0 +1,23 @@
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+
+# Gradle files
+.gradle/
+build/
+
+# IntelliJ files
+.idea
+*.iml
+
+# Maven output folder
+target
+
+# Misc
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
