@@ -4,6 +4,7 @@ import com.manolovn.trianglify.point.Point;
 import com.manolovn.trianglify.triangle.Edge;
 import com.manolovn.trianglify.triangle.Triangle;
 
+import java.util.Collection;
 import java.util.Vector;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -14,40 +15,19 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class DelaunayTriangulator implements Triangulator {
 
-    private Vector<Point> pointSet;
     private Triangulation triangulation;
 
-    public DelaunayTriangulator(Vector<Point> pointSet) {
-        checkNotNull(pointSet);
-        checkArgument(pointSet.size() >= 3, "Can't triangulate less than three points");
-        this.pointSet = pointSet;
-        this.triangulation = new Triangulation();
+    public DelaunayTriangulator() {
+
     }
 
     @Override
-    public Vector<Triangle> triangulate() {
+    public Vector<Triangle> triangulate(Vector<Point> pointSet) {
+        checkNotNull(pointSet);
+        checkArgument(pointSet.size() >= 3, "Can't triangulate less than three points");
         triangulation = new Triangulation();
 
-        /**
-         * In order for the in circumcircle test to not consider the vertices of
-         * the super triangle we have to start out with a big triangle
-         * containing the whole point set. We have to scale the super triangle
-         * to be very large. Otherwise the triangulation is not convex.
-         */
-        int maxOfAnyCoordinate = 0;
-
-        for (Point point : pointSet) {
-            maxOfAnyCoordinate = Math.max(Math.max(point.x, point.y), maxOfAnyCoordinate);
-        }
-
-        maxOfAnyCoordinate *= 16;
-
-        Point p1 = new Point(0, 3 * maxOfAnyCoordinate);
-        Point p2 = new Point(3 * maxOfAnyCoordinate, 0);
-        Point p3 = new Point(-3 * maxOfAnyCoordinate, -3 * maxOfAnyCoordinate);
-
-        Triangle superTriangle = new Triangle(p1, p2, p3);
-
+        Triangle superTriangle = generateSuperTriangle(pointSet);
         triangulation.add(superTriangle);
 
         for (int i = 0; i < pointSet.size(); i++) {
@@ -58,6 +38,10 @@ public class DelaunayTriangulator implements Triangulator {
 
                 Triangle first = triangulation.findOneTriangleSharing(edge);
                 Triangle second = triangulation.findNeighbour(first, edge);
+
+                if(first == null || second == null) {
+                    continue;
+                }
 
                 Point firstNoneEdgeVertex = first.getNoneEdgeVertex(edge);
                 Point secondNoneEdgeVertex = second.getNoneEdgeVertex(edge);
@@ -100,6 +84,7 @@ public class DelaunayTriangulator implements Triangulator {
             }
         }
 
+        // remove super triangle
         triangulation.removeTrianglesUsing(superTriangle.a);
         triangulation.removeTrianglesUsing(superTriangle.b);
         triangulation.removeTrianglesUsing(superTriangle.c);
@@ -127,5 +112,22 @@ public class DelaunayTriangulator implements Triangulator {
                 legalizeEdge(secondTriangle, new Edge(noneEdgeVertex, edge.b), vertex);
             }
         }
+    }
+
+    private Triangle generateSuperTriangle(Collection<Point> pointSet) {
+        final int factor = 3;
+        int maxCoordinate = 0;
+        int minCoordinate = 0;
+
+        for (Point point : pointSet) {
+            maxCoordinate = Math.max(Math.max(point.x, point.y), maxCoordinate);
+            minCoordinate = Math.min(Math.min(point.x, point.y), minCoordinate);
+        }
+
+        Point p1 = new Point(minCoordinate, factor * maxCoordinate);
+        Point p2 = new Point(factor * maxCoordinate, minCoordinate);
+        Point p3 = new Point(-factor * maxCoordinate, -factor * maxCoordinate);
+
+        return new Triangle(p1, p2, p3);
     }
 }

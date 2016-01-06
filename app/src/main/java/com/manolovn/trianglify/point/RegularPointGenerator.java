@@ -34,10 +34,10 @@ public class RegularPointGenerator implements PointGenerator {
     public Vector<Point> generatePoints(int width, int height) {
         Vector<Point> points = new Vector<>();
 
-        for (int i = -bleedX; i < width + bleedX; i += cellSize) {
-            for (int j = -bleedY; j < height + bleedY; j += cellSize) {
-                int x = i + cellSize / 2 + random.nextInt(variance);
-                int y = j + cellSize / 2 + random.nextInt(variance);
+        for (int j = -bleedY; j < height + bleedY; j += cellSize) {
+            for (int i = -bleedX; i < width + bleedX; i += cellSize) {
+                int x = i + random.nextInt(variance);
+                int y = j + random.nextInt(variance);
                 points.add(new Point(x, y));
             }
         }

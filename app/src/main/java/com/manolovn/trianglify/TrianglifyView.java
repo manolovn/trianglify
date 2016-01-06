@@ -4,20 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.manolovn.trianglify.color.ColorGenerator;
-import com.manolovn.trianglify.color.RandomColorGenerator;
 import com.manolovn.trianglify.point.Point;
 import com.manolovn.trianglify.point.PointGenerator;
 import com.manolovn.trianglify.point.RegularPointGenerator;
+import com.manolovn.trianglify.renderer.TriangleRenderer;
 import com.manolovn.trianglify.triangle.Triangle;
 import com.manolovn.trianglify.triangulator.DelaunayTriangulator;
 import com.manolovn.trianglify.triangulator.Triangulator;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 /**
@@ -27,19 +24,12 @@ public class TrianglifyView extends View {
 
     private PointGenerator pointGenerator;
     private Triangulator triangulator;
-    private ColorGenerator colorGenerator;
+    private TriangleRenderer triangleRenderer;
 
     private int cellSize = 200;
-    private int variance = 30;
+    private int variance = 50;
 
-    private int width;
-    private int height;
-    private int cellsX;
-    private int cellsY;
-    private int bleedX;
-    private int bleedY;
     private Paint paint;
-    private Paint linePaint;
 
     private Vector<Point> points;
     private Vector<Triangle> triangles;
@@ -64,70 +54,46 @@ public class TrianglifyView extends View {
             parseAttributes();
         }
 
-        colorGenerator = new RandomColorGenerator();
         pointGenerator = new RegularPointGenerator(cellSize, variance);
+        triangulator = new DelaunayTriangulator();
+        triangleRenderer = new TriangleRenderer();
 
         paint = new Paint();
-        paint.setColor(Color.RED);
+        paint.setAntiAlias(true);
+        paint.setColor(Color.BLACK);
         paint.setStrokeWidth(10);
-
-        linePaint = new Paint();
-        linePaint.setAntiAlias(true);
-        linePaint.setColor(Color.BLACK);
-        linePaint.setStrokeWidth(2);
-        linePaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setTextSize(30);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        width = getMeasuredWidth();
-        height = getMeasuredHeight();
+        int width = getMeasuredWidth();
+        int height = getMeasuredHeight();
 
-        cellsX = (int) Math.floor((width + 4 * cellSize) / cellSize);
-        cellsY = (int) Math.floor((height + 4 * cellSize) / cellSize);
-
-        bleedX = ((cellsX * cellSize) - width) / 2;
-        bleedY = ((cellsY * cellSize) - height) / 2;
-
-        pointGenerator.setBleedX(bleedX);
-        pointGenerator.setBleedY(bleedY);
+        pointGenerator.setBleedX(50);
+        pointGenerator.setBleedY(50);
         points = pointGenerator.generatePoints(width, height);
-
-        triangulator = new DelaunayTriangulator(points);
-        triangles = triangulator.triangulate();
+        triangles = triangulator.triangulate(points);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        renderTriangles(canvas, triangles);
+        triangleRenderer.render(triangles, canvas);
+        renderPoints(canvas, points, paint);
     }
 
-    private void renderTriangles(Canvas canvas, Vector<Triangle> triangles) {
-        for (Triangle triangle : triangles) {
-            Path path = new Path();
-
-            path.moveTo(triangle.a.x, triangle.a.y);
-
-            path.lineTo(triangle.b.x, triangle.b.y);
-            path.moveTo(triangle.b.x, triangle.b.y);
-
-            path.lineTo(triangle.c.x, triangle.c.y);
-            path.moveTo(triangle.c.x, triangle.c.y);
-
-            path.lineTo(triangle.a.x, triangle.a.y);
-
-            path.close();
-
-            linePaint.setColor(colorGenerator.nextColor());
-            canvas.drawPath(path, linePaint);
+    private void renderPoints(Canvas canvas, Vector<Point> points, Paint paint) {
+        for (Point point : points) {
+            canvas.drawPoint(point.x, point.y, paint);
+            canvas.drawText("(" + point.x + "," + point.y + ")", point.x, point.y, paint);
         }
     }
 
     private void parseAttributes() {
-
+        // TODO: parse attributes
     }
 }
