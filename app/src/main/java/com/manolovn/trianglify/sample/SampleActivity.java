@@ -1,9 +1,7 @@
-package com.manolovn.trianglify;
+package com.manolovn.trianglify.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +9,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import com.manolovn.colorbrewer.ColorBrewer;
+import com.manolovn.trianglify.TrianglifyView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,23 +34,12 @@ public class SampleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        varianceControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                trianglifyView.setVariance(progress);
-            }
+        initCellSizeControl();
+        initVarianceControl();
+        initColorControl();
+    }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
+    private void initCellSizeControl() {
         cellSizeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -70,16 +58,38 @@ public class SampleActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-        final List<String> list = new ArrayList<>();
+    private void initVarianceControl() {
+        varianceControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                trianglifyView.setVariance(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    private void initColorControl() {
+        final List<String> list = new ArrayList<>(ColorBrewer.values().length);
         final ColorBrewer[] colors = ColorBrewer.values();
-        for(ColorBrewer color : colors) {
+        for (ColorBrewer color : colors) {
             list.add(color.name());
         }
 
-        ArrayAdapter<String> adp = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-        adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        colorControl.setAdapter(adp);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colorControl.setAdapter(adapter);
 
         colorControl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -92,22 +102,5 @@ public class SampleActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

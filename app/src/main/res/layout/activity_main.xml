@@ -2,23 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".SampleActivity">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.manolovn.trianglify.TrianglifyView
             android:id="@+id/trianglify"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_width="match_parent"
             android:layout_height="250dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CELL SIZE"/>
+            android:text="@string/cellSizeControlLabel"/>
 
         <SeekBar
             android:id="@+id/cellSizeControl"
@@ -28,7 +29,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="VARIANCE"/>
+            android:text="@string/varianceControlLabel"/>
 
         <SeekBar
             android:id="@+id/varianceControl"
@@ -38,7 +39,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="COLOR"/>
+            android:text="@string/colorControlLabel"/>
 
         <Spinner
             android:id="@+id/colorControl"
