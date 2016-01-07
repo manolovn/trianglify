@@ -523,14 +523,14 @@ public enum ColorBrewer {
         for (int i = 0; i < colorCount; i++) {
             float value = scale * i;
             int index = (int) Math.floor(value);
-            int c1 = Color.parseColor("#" + hexColors[maxIndex][index]);
+            int c1 = parseColor(hexColors[maxIndex][index]);
             float remainder = 0.0f;
             int c2;
             if (index + 1 < hexColors.length) {
-                c2 = Color.parseColor("#" + hexColors[maxIndex][index + 1]);
+                c2 = parseColor(hexColors[maxIndex][index + 1]);
                 remainder = value - index;
             } else {
-                c2 = Color.parseColor("#" + hexColors[maxIndex][index]);
+                c2 = parseColor(hexColors[maxIndex][index]);
             }
             int red = Math.round((1 - remainder) * Color.red(c1) + (remainder) * Color.red(c2));
             int green = Math.round((1 - remainder) * Color.green(c1) + (remainder) * Color.green(c2));
@@ -544,8 +544,12 @@ public enum ColorBrewer {
     private int[] toColor(int numberOfColors) {
         int[] colors = new int[numberOfColors];
         for (int i = 0; i < numberOfColors; i++) {
-            colors[i] = Color.parseColor("#" + hexColors[numberOfColors - 1][i]);
+            colors[i] = parseColor(hexColors[numberOfColors - 1][i]);
         }
         return colors;
+    }
+
+    private int parseColor(String color) {
+        return Color.parseColor("#" + color);
     }
 }
