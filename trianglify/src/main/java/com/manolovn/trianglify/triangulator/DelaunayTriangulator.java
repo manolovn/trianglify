@@ -1,14 +1,13 @@
 package com.manolovn.trianglify.triangulator;
 
+import android.support.annotation.Nullable;
+
 import com.manolovn.trianglify.domain.Point;
 import com.manolovn.trianglify.domain.Edge;
 import com.manolovn.trianglify.domain.Triangle;
 
 import java.util.Collection;
 import java.util.Vector;
-
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Delaunay triangulator
@@ -129,5 +128,18 @@ public class DelaunayTriangulator implements Triangulator {
         Point p3 = new Point(-factor * maxCoordinate, -factor * maxCoordinate);
 
         return new Triangle(p1, p2, p3);
+    }
+
+    public static <T> T checkNotNull(T reference) {
+        if (reference == null) {
+            throw new NullPointerException();
+        }
+        return reference;
+    }
+
+    public static void checkArgument(boolean expression, @Nullable Object errorMessage) {
+        if (!expression) {
+            throw new IllegalArgumentException(String.valueOf(errorMessage));
+        }
     }
 }

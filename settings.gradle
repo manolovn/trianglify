@@ -1,1 +1,1 @@
-include ':app', ':colorbrewer'
+include ':app', ':colorbrewer', ':trianglify'
