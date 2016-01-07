@@ -19,6 +19,8 @@ import java.util.Vector;
 
 /**
  * Trianglify view
+ *
+ * @author manolovn
  */
 public class TrianglifyView extends View {
 

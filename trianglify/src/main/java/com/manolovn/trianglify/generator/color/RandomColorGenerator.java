@@ -6,6 +6,8 @@ import java.util.Random;
 
 /**
  * Random color generator
+ *
+ * @author manolovn
  */
 public class RandomColorGenerator implements ColorGenerator {
 

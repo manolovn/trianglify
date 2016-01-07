@@ -2,6 +2,8 @@ package com.manolovn.trianglify.domain;
 
 /**
  * Edge entity
+ *
+ * @author manolovn
  */
 public class Edge {
 

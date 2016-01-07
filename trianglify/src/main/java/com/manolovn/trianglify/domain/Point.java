@@ -2,6 +2,8 @@ package com.manolovn.trianglify.domain;
 
 /**
  * Point entity
+ *
+ * @author manolovn
  */
 public class Point {
 

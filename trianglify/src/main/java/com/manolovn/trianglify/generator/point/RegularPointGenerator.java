@@ -7,6 +7,8 @@ import java.util.Vector;
 
 /**
  * Regular point generator
+ *
+ * @author manolovn
  */
 public class RegularPointGenerator implements PointGenerator {
 

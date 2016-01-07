@@ -6,6 +6,8 @@ import java.util.Vector;
 
 /**
  * Point generator
+ *
+ * @author manolovn
  */
 public interface PointGenerator {
 

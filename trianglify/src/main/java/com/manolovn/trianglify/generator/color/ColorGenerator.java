@@ -2,6 +2,8 @@ package com.manolovn.trianglify.generator.color;
 
 /**
  * Color generator
+ *
+ * @author manolovn
  */
 public interface ColorGenerator {
 

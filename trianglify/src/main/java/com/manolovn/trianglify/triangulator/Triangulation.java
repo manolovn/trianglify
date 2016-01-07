@@ -10,6 +10,8 @@ import java.util.Vector;
 
 /**
  * Triangulation model
+ *
+ * @author manolovn
  */
 public class Triangulation {
 

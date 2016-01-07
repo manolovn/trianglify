@@ -7,6 +7,8 @@ import java.util.Vector;
 
 /**
  * Triangulator behavior
+ *
+ * @author manolovn
  */
 public interface Triangulator {
 

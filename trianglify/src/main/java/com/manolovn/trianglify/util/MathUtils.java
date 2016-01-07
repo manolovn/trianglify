@@ -2,6 +2,8 @@ package com.manolovn.trianglify.util;
 
 /**
  * Math utils
+ *
+ * @author manolovn
  */
 public class MathUtils {
 

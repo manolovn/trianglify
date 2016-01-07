@@ -10,6 +10,8 @@ import java.util.Vector;
 
 /**
  * Delaunay triangulator
+ *
+ * @author manolovn
  */
 public class DelaunayTriangulator implements Triangulator {
 

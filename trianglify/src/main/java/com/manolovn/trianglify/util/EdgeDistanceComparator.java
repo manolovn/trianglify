@@ -4,6 +4,8 @@ import com.manolovn.trianglify.domain.Edge;
 
 /**
  * Edge distance comparator
+ *
+ * @author manolovn
  */
 public class EdgeDistanceComparator implements Comparable<EdgeDistanceComparator> {
 

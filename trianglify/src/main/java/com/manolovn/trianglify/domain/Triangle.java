@@ -7,6 +7,8 @@ import java.util.Arrays;
 
 /**
  * Triangle entity
+ *
+ * @author manolovn
  */
 public class Triangle {
 
