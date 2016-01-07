@@ -2,8 +2,6 @@ package com.manolovn.trianglify;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -28,8 +26,6 @@ public class TrianglifyView extends View {
 
     private int cellSize = 200;
     private int variance = 50;
-
-    private Paint paint;
 
     private Vector<Point> points;
     private Vector<Triangle> triangles;
@@ -57,12 +53,6 @@ public class TrianglifyView extends View {
         pointGenerator = new RegularPointGenerator(cellSize, variance);
         triangulator = new DelaunayTriangulator();
         triangleRenderer = new TriangleRenderer();
-
-        paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(10);
-        paint.setTextSize(30);
     }
 
     @Override
@@ -83,14 +73,6 @@ public class TrianglifyView extends View {
         super.onDraw(canvas);
 
         triangleRenderer.render(triangles, canvas);
-        renderPoints(canvas, points, paint);
-    }
-
-    private void renderPoints(Canvas canvas, Vector<Point> points, Paint paint) {
-        for (Point point : points) {
-            canvas.drawPoint(point.x, point.y, paint);
-            canvas.drawText("(" + point.x + "," + point.y + ")", point.x, point.y, paint);
-        }
     }
 
     private void parseAttributes() {
