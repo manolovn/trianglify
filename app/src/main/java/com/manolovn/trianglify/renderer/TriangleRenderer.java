@@ -4,8 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 
+import com.manolovn.trianglify.color.BrewerColorGenerator;
 import com.manolovn.trianglify.color.ColorGenerator;
-import com.manolovn.trianglify.color.RandomColorGenerator;
 import com.manolovn.trianglify.triangle.Triangle;
 
 import java.util.Collection;
@@ -22,7 +22,7 @@ public class TriangleRenderer {
 
     public TriangleRenderer() {
         initPaint();
-        colorGenerator = new RandomColorGenerator();
+        colorGenerator = new BrewerColorGenerator();
     }
 
     public TriangleRenderer(ColorGenerator colorGenerator) {
