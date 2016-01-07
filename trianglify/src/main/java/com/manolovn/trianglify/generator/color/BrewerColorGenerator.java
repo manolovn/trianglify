@@ -10,8 +10,8 @@ import com.manolovn.colorbrewer.ColorBrewer;
 public class BrewerColorGenerator implements ColorGenerator {
 
     private ColorBrewer palette;
-    int i = 0;
-    int[] colors;
+    private int index = 0;
+    private int[] colors;
 
     public BrewerColorGenerator() {
         palette = ColorBrewer.Greys;
@@ -23,13 +23,13 @@ public class BrewerColorGenerator implements ColorGenerator {
 
     public void setCount(int count) {
         colors = palette.getColorPalette(count);
-        i = 0;
+        index = 0;
     }
 
     @Override
     public int nextColor() {
-        int color = colors[i];
-        i++;
+        int color = colors[index];
+        index++;
         return color;
     }
 }

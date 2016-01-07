@@ -32,9 +32,8 @@ public class TriangleRenderer {
 
     private void initPaint() {
         trianglePaint = new Paint();
-        trianglePaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        trianglePaint.setStyle(Paint.Style.FILL);
         trianglePaint.setAntiAlias(true);
-        trianglePaint.setStrokeWidth(5);
 
         if (colorGenerator == null) {
             colorGenerator = new BrewerColorGenerator();
