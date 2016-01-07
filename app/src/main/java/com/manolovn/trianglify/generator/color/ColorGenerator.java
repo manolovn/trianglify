@@ -6,4 +6,6 @@ package com.manolovn.trianglify.generator.color;
 public interface ColorGenerator {
 
     int nextColor();
+
+    void setCount(int count);
 }

@@ -9,11 +9,21 @@ import com.manolovn.colorbrewer.ColorBrewer;
  */
 public class BrewerColorGenerator implements ColorGenerator {
 
+    private ColorBrewer palette;
     int i = 0;
     int[] colors;
 
     public BrewerColorGenerator() {
-        colors = ColorBrewer.YlOrBr.getColorPalette(100);
+        palette = ColorBrewer.Greys;
+    }
+
+    public BrewerColorGenerator(ColorBrewer palette) {
+        this.palette = palette;
+    }
+
+    public void setCount(int count) {
+        colors = palette.getColorPalette(count);
+        i = 0;
     }
 
     @Override

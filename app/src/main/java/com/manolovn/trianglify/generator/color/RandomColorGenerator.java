@@ -23,4 +23,9 @@ public class RandomColorGenerator implements ColorGenerator {
 
         return Color.rgb(r, g, b);
     }
+
+    @Override
+    public void setCount(int count) {
+        // not necessary
+    }
 }

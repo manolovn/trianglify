@@ -5,7 +5,9 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.manolovn.colorbrewer.ColorBrewer;
 import com.manolovn.trianglify.domain.Point;
+import com.manolovn.trianglify.generator.color.BrewerColorGenerator;
 import com.manolovn.trianglify.generator.point.PointGenerator;
 import com.manolovn.trianglify.generator.point.RegularPointGenerator;
 import com.manolovn.trianglify.renderer.TriangleRenderer;
@@ -23,6 +25,9 @@ public class TrianglifyView extends View {
     private PointGenerator pointGenerator;
     private Triangulator triangulator;
     private TriangleRenderer triangleRenderer;
+
+    private int width;
+    private int height;
 
     private int cellSize = 200;
     private int variance = 50;
@@ -59,23 +64,40 @@ public class TrianglifyView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int width = getMeasuredWidth();
-        int height = getMeasuredHeight();
-
-        pointGenerator.setBleedX(50);
-        pointGenerator.setBleedY(50);
-        points = pointGenerator.generatePoints(width, height);
-        triangles = triangulator.triangulate(points);
+        width = getMeasuredWidth();
+        height = getMeasuredHeight();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        pointGenerator.setBleedX(cellSize);
+        pointGenerator.setBleedY(cellSize);
+        points = pointGenerator.generatePoints(width, height);
+        triangles = triangulator.triangulate(points);
+
         triangleRenderer.render(triangles, canvas);
     }
 
     private void parseAttributes() {
         // TODO: parse attributes
+    }
+
+    public void setVariance(int variance) {
+        this.variance = variance;
+        pointGenerator = new RegularPointGenerator(cellSize, variance);
+        invalidate();
+    }
+
+    public void setCellSize(int cellSize) {
+        this.cellSize = cellSize;
+        pointGenerator = new RegularPointGenerator(cellSize, variance);
+        invalidate();
+    }
+
+    public void setColor(ColorBrewer color) {
+        triangleRenderer = new TriangleRenderer(new BrewerColorGenerator(color));
+        invalidate();
     }
 }

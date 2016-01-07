@@ -4,9 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 
+import com.manolovn.trianglify.domain.Triangle;
 import com.manolovn.trianglify.generator.color.BrewerColorGenerator;
 import com.manolovn.trianglify.generator.color.ColorGenerator;
-import com.manolovn.trianglify.domain.Triangle;
 
 import java.util.Collection;
 
@@ -22,11 +22,12 @@ public class TriangleRenderer {
 
     public TriangleRenderer() {
         initPaint();
-        colorGenerator = new BrewerColorGenerator();
     }
 
     public TriangleRenderer(ColorGenerator colorGenerator) {
         this.colorGenerator = colorGenerator;
+
+        initPaint();
     }
 
     private void initPaint() {
@@ -34,15 +35,15 @@ public class TriangleRenderer {
         trianglePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         trianglePaint.setAntiAlias(true);
         trianglePaint.setStrokeWidth(5);
+
+        if (colorGenerator == null) {
+            colorGenerator = new BrewerColorGenerator();
+        }
     }
 
     public void render(Collection<Triangle> triangles, Canvas canvas) {
-        int i = 0;
+        colorGenerator.setCount(triangles.size());
         for (Triangle triangle : triangles) {
-            if(i > 100) {
-                continue;
-            }
-
             Path path = new Path();
             path.setFillType(Path.FillType.EVEN_ODD);
 
@@ -55,8 +56,6 @@ public class TriangleRenderer {
 
             trianglePaint.setColor(colorGenerator.nextColor());
             canvas.drawPath(path, trianglePaint);
-
-            i++;
         }
     }
 }
