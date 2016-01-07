@@ -31,6 +31,8 @@ public class TrianglifyView extends View {
 
     private int cellSize = 200;
     private int variance = 50;
+    private int bleedX = cellSize;
+    private int bleedY = cellSize;
 
     private Vector<Point> points;
     private Vector<Triangle> triangles;
@@ -60,6 +62,10 @@ public class TrianglifyView extends View {
         triangleRenderer = new TriangleRenderer();
     }
 
+    private void parseAttributes() {
+        // TODO: parse attributes
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -72,16 +78,12 @@ public class TrianglifyView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        pointGenerator.setBleedX(cellSize);
-        pointGenerator.setBleedY(cellSize);
+        pointGenerator.setBleedX(bleedX);
+        pointGenerator.setBleedY(bleedY);
         points = pointGenerator.generatePoints(width, height);
         triangles = triangulator.triangulate(points);
 
         triangleRenderer.render(triangles, canvas);
-    }
-
-    private void parseAttributes() {
-        // TODO: parse attributes
     }
 
     public void setVariance(int variance) {
