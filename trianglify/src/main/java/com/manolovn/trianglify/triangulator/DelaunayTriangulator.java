@@ -1,10 +1,9 @@
 package com.manolovn.trianglify.triangulator;
 
-import android.support.annotation.Nullable;
-
-import com.manolovn.trianglify.domain.Point;
 import com.manolovn.trianglify.domain.Edge;
+import com.manolovn.trianglify.domain.Point;
 import com.manolovn.trianglify.domain.Triangle;
+import com.manolovn.trianglify.util.Preconditions;
 
 import java.util.Collection;
 import java.util.Vector;
@@ -22,8 +21,8 @@ public class DelaunayTriangulator implements Triangulator {
 
     @Override
     public Vector<Triangle> triangulate(Vector<Point> pointSet) {
-        checkNotNull(pointSet);
-        checkArgument(pointSet.size() >= 3, "Can't triangulate less than three points");
+        Preconditions.checkNotNull(pointSet);
+        Preconditions.checkArgument(pointSet.size() >= 3, "Can't triangulate less than 3 points");
         triangulation = new Triangulation();
 
         Triangle superTriangle = generateSuperTriangle(pointSet);
@@ -38,7 +37,7 @@ public class DelaunayTriangulator implements Triangulator {
                 Triangle first = triangulation.findOneTriangleSharing(edge);
                 Triangle second = triangulation.findNeighbour(first, edge);
 
-                if(first == null || second == null) {
+                if (first == null || second == null) {
                     continue;
                 }
 
@@ -128,18 +127,5 @@ public class DelaunayTriangulator implements Triangulator {
         Point p3 = new Point(-factor * maxCoordinate, -factor * maxCoordinate);
 
         return new Triangle(p1, p2, p3);
-    }
-
-    public static <T> T checkNotNull(T reference) {
-        if (reference == null) {
-            throw new NullPointerException();
-        }
-        return reference;
-    }
-
-    public static void checkArgument(boolean expression, @Nullable Object errorMessage) {
-        if (!expression) {
-            throw new IllegalArgumentException(String.valueOf(errorMessage));
-        }
     }
 }
