@@ -1,6 +1,4 @@
-package com.manolovn.trianglify.triangle;
-
-import com.manolovn.trianglify.point.Point;
+package com.manolovn.trianglify.domain;
 
 /**
  * Edge entity

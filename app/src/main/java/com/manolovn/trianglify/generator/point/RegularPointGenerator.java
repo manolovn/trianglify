@@ -1,4 +1,6 @@
-package com.manolovn.trianglify.point;
+package com.manolovn.trianglify.generator.point;
+
+import com.manolovn.trianglify.domain.Point;
 
 import java.util.Random;
 import java.util.Vector;

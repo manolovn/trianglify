@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.manolovn.trianglify.point.Point;
-import com.manolovn.trianglify.point.PointGenerator;
-import com.manolovn.trianglify.point.RegularPointGenerator;
+import com.manolovn.trianglify.domain.Point;
+import com.manolovn.trianglify.generator.point.PointGenerator;
+import com.manolovn.trianglify.generator.point.RegularPointGenerator;
 import com.manolovn.trianglify.renderer.TriangleRenderer;
-import com.manolovn.trianglify.triangle.Triangle;
+import com.manolovn.trianglify.domain.Triangle;
 import com.manolovn.trianglify.triangulator.DelaunayTriangulator;
 import com.manolovn.trianglify.triangulator.Triangulator;
 

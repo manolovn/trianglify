@@ -1,4 +1,4 @@
-package com.manolovn.trianglify.color;
+package com.manolovn.trianglify.generator.color;
 
 import com.manolovn.colorbrewer.ColorBrewer;
 

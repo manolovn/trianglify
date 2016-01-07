@@ -1,6 +1,5 @@
-package com.manolovn.trianglify.triangle;
+package com.manolovn.trianglify.domain;
 
-import com.manolovn.trianglify.point.Point;
 import com.manolovn.trianglify.util.EdgeDistanceComparator;
 import com.manolovn.trianglify.util.MathUtils;
 

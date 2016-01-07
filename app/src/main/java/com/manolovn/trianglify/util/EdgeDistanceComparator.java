@@ -1,6 +1,6 @@
 package com.manolovn.trianglify.util;
 
-import com.manolovn.trianglify.triangle.Edge;
+import com.manolovn.trianglify.domain.Edge;
 
 /**
  * Edge distance comparator

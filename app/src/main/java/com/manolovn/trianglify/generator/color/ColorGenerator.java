@@ -1,4 +1,4 @@
-package com.manolovn.trianglify.color;
+package com.manolovn.trianglify.generator.color;
 
 /**
  * Color generator

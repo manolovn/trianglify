@@ -1,4 +1,4 @@
-package com.manolovn.trianglify.point;
+package com.manolovn.trianglify.domain;
 
 /**
  * Point entity

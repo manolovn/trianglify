@@ -1,8 +1,8 @@
 package com.manolovn.trianglify.triangulator;
 
-import com.manolovn.trianglify.point.Point;
-import com.manolovn.trianglify.triangle.Edge;
-import com.manolovn.trianglify.triangle.Triangle;
+import com.manolovn.trianglify.domain.Point;
+import com.manolovn.trianglify.domain.Edge;
+import com.manolovn.trianglify.domain.Triangle;
 
 import java.util.Collection;
 import java.util.Vector;
