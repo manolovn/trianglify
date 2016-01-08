@@ -31,10 +31,10 @@ public class TrianglifyView extends View {
     private int width;
     private int height;
 
-    private int cellSize = 200;
-    private int variance = 50;
-    private int bleedX = cellSize;
-    private int bleedY = cellSize;
+    private int cellSize = Default.cellSize;
+    private int variance = Default.variance;
+    private int bleedX = Default.bleedX;
+    private int bleedY = Default.bleedY;
 
     private Vector<Point> points;
     private Vector<Triangle> triangles;
