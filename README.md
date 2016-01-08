@@ -3,6 +3,18 @@ Android view inspired by http://qrohlf.com/trianglify/
 
 ![Demo Screenshot][1]
 
+Usage
+-----
+
+Just add the view to your layout:
+
+```xml
+<com.manolovn.trianglify.TrianglifyView
+            android:id="@+id/trianglify_view_sample"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+```
+
 # License
 
     Copyright 2015 Manuel Vera Nieto
