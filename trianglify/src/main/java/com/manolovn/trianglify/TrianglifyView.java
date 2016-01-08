@@ -1,6 +1,7 @@
 package com.manolovn.trianglify;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
@@ -31,10 +32,10 @@ public class TrianglifyView extends View {
     private int width;
     private int height;
 
-    private int cellSize = Default.cellSize;
-    private int variance = Default.variance;
-    private int bleedX = Default.bleedX;
-    private int bleedY = Default.bleedY;
+    private int cellSize;
+    private int variance;
+    private int bleedX;
+    private int bleedY;
 
     private Vector<Point> points;
     private Vector<Triangle> triangles;
@@ -56,7 +57,7 @@ public class TrianglifyView extends View {
 
     private void init(AttributeSet attrs) {
         if (attrs != null) {
-            parseAttributes();
+            parseAttributes(attrs);
         }
 
         pointGenerator = new RegularPointGenerator(cellSize, variance);
@@ -64,8 +65,18 @@ public class TrianglifyView extends View {
         triangleRenderer = new TriangleRenderer();
     }
 
-    private void parseAttributes() {
-        // TODO: parse attributes
+    private void parseAttributes(AttributeSet attrs) {
+        TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs,
+                R.styleable.TrianglifyView, 0, 0);
+
+        try {
+            cellSize = a.getInteger(R.styleable.TrianglifyView_cellSize, Default.cellSize);
+            variance = a.getInteger(R.styleable.TrianglifyView_variance, Default.variance);
+            bleedX = a.getInteger(R.styleable.TrianglifyView_bleedX, Default.bleedX);
+            bleedY = a.getInteger(R.styleable.TrianglifyView_bleedY, Default.bleedY);
+        } finally {
+            a.recycle();
+        }
     }
 
     @Override

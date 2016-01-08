@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TrianglifyView">
+        <attr name="cellSize" format="integer" />
+        <attr name="variance" format="integer" />
+        <attr name="bleedX" format="integer" />
+        <attr name="bleedY" format="integer" />
+    </declare-styleable>
+</resources>
