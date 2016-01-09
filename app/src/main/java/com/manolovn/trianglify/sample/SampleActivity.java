@@ -2,15 +2,20 @@ package com.manolovn.trianglify.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.manolovn.colorbrewer.ColorBrewer;
 import com.manolovn.trianglify.TrianglifyView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +33,8 @@ public class SampleActivity extends AppCompatActivity {
     @Bind(R.id.colorControl)
     Spinner colorControl;
 
+    private ImageExporter exporter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,35 @@ public class SampleActivity extends AppCompatActivity {
         initCellSizeControl();
         initVarianceControl();
         initColorControl();
+
+        exporter = new ImageExporter();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_export_to_image:
+                exportViewToImage();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void exportViewToImage() {
+        try {
+            exporter.exportFromView(trianglifyView);
+            Toast.makeText(this, "Image generated succesfully", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(this, "EXPORTING FAILED", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initCellSizeControl() {

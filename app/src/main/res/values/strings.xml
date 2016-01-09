@@ -3,4 +3,5 @@
     <string name="cellSizeControlLabel">CELL SIZE</string>
     <string name="varianceControlLabel">VARIANCE</string>
     <string name="colorControlLabel">COLOR</string>
+    <string name="action_export_to_image">Export to image</string>
 </resources>
