@@ -1,4 +1,4 @@
-# Trianglify (WIP)
+# Trianglify
 Android view inspired by http://qrohlf.com/trianglify/
 
 ![Demo Screenshot][1]
