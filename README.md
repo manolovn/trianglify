@@ -3,8 +3,7 @@ Android view inspired by http://qrohlf.com/trianglify/
 
 ![Demo Screenshot][1]
 
-Usage
------
+# Usage
 
 Just add the view to your layout:
 
@@ -13,6 +12,26 @@ Just add the view to your layout:
             android:id="@+id/trianglify_view_sample"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+```
+
+Cell size, variance and bleeds can be initialized from layout:
+
+```xml
+<com.manolovn.trianglify.TrianglifyView
+            android:id="@+id/trianglify_view_sample"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            trianglify:cellSize="175"
+            trianglify:variance="75"
+            trianglify:bleedX="50"
+            trianglify:bleedY="50"/>
+```
+
+or using setters (see sample for more info):
+
+```java
+trianglifyView.setCellSize(175);
+trianglifyView.setVariance(75);
 ```
 
 # License
