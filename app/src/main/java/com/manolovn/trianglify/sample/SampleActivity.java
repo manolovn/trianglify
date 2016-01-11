@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.manolovn.colorbrewer.ColorBrewer;
 import com.manolovn.trianglify.TrianglifyView;
+import com.manolovn.trianglify.sample.exporter.ImageExporter;
 
 import java.io.IOException;
 import java.util.ArrayList;
