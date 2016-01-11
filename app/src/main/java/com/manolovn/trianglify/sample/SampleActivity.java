@@ -46,6 +46,7 @@ public class SampleActivity extends AppCompatActivity {
         initVarianceControl();
         initColorControl();
 
+        trianglifyView.setDrawingCacheEnabled(true);
         exporter = new ImageExporter();
     }
 
@@ -81,7 +82,9 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (progress > 0) {
+                    trianglifyView.setDrawingCacheEnabled(false);
                     trianglifyView.setCellSize(progress * 10);
+                    trianglifyView.setDrawingCacheEnabled(true);
                 }
             }
 
@@ -101,7 +104,9 @@ public class SampleActivity extends AppCompatActivity {
         varianceControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                trianglifyView.setDrawingCacheEnabled(false);
                 trianglifyView.setVariance(progress);
+                trianglifyView.setDrawingCacheEnabled(true);
             }
 
             @Override
@@ -131,7 +136,9 @@ public class SampleActivity extends AppCompatActivity {
         colorControl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                trianglifyView.setDrawingCacheEnabled(false);
                 trianglifyView.setColor(colors[position]);
+                trianglifyView.setDrawingCacheEnabled(true);
             }
 
             @Override

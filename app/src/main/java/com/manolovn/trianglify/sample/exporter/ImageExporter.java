@@ -23,7 +23,6 @@ public class ImageExporter {
     public void exportFromView(final Context context, final View view) throws IOException {
         File folder = FileUtils.getOrCreateFolder(ALBUM_NAME);
 
-        view.setDrawingCacheEnabled(true);
         Bitmap bitmap = view.getDrawingCache(true);
 
         File file = null;
