@@ -68,7 +68,7 @@ public class SampleActivity extends AppCompatActivity {
 
     private void exportViewToImage() {
         try {
-            exporter.exportFromView(trianglifyView);
+            exporter.exportFromView(this, trianglifyView);
             Toast.makeText(this, "Image generated succesfully", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Toast.makeText(this, "EXPORTING FAILED", Toast.LENGTH_SHORT).show();
