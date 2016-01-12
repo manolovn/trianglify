@@ -1,5 +1,6 @@
-# Trianglify
-Android view inspired by http://qrohlf.com/trianglify/
+# Trianglify [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Trianglify-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3014)
+
+Android view inspired by http://qrohlf.com/trianglify/ 
 
 ![Demo Screenshot][1]
 
