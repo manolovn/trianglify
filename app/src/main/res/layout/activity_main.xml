@@ -10,11 +10,15 @@
         android:layout_height="match_parent"/>
 
     <LinearLayout
+        android:background="#CCFFFFFF"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="56dp"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -46,16 +50,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/saveToGalleryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save to gallery"/>
+
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/random_generate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_gravity="bottom"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="32dp"
         android:clickable="true"
         android:elevation="5dp"
         android:src="@mipmap/ic_refresh" />

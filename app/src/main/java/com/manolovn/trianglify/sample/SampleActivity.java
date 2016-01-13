@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SampleActivity extends AppCompatActivity {
 
@@ -33,6 +35,8 @@ public class SampleActivity extends AppCompatActivity {
     SeekBar varianceControl;
     @Bind(R.id.colorControl)
     Spinner colorControl;
+    @Bind(R.id.saveToGalleryButton)
+    Button saveToGallery;
 
     private ImageExporter exporter;
 
@@ -50,22 +54,9 @@ public class SampleActivity extends AppCompatActivity {
         exporter = new ImageExporter();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_export_to_image:
-                exportViewToImage();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    @OnClick(R.id.saveToGalleryButton)
+    void saveToGallery() {
+        exportViewToImage();
     }
 
     private void exportViewToImage() {
