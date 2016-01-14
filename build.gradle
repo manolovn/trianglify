@@ -10,7 +10,14 @@ buildscript {
 }
 
 allprojects {
+    version = VERSION_NAME
+    group = GROUP
+
     repositories {
         jcenter()
     }
+}
+
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
 }
