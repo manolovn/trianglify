@@ -6,6 +6,14 @@ Android view inspired by http://qrohlf.com/trianglify/
 
 # Usage
 
+Add the dependency
+
+```groovy
+dependencies {
+    compile 'com.manolovn:trianglify:1.0.2@aar'
+}
+```
+
 Just add the view to your layout:
 
 ```xml
