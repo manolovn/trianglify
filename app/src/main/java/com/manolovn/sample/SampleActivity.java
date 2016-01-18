@@ -1,10 +1,7 @@
-package com.manolovn.trianglify.sample;
+package com.manolovn.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,7 +12,7 @@ import android.widget.Toast;
 
 import com.manolovn.colorbrewer.ColorBrewer;
 import com.manolovn.trianglify.TrianglifyView;
-import com.manolovn.trianglify.sample.exporter.ImageExporter;
+import com.manolovn.sample.exporter.ImageExporter;
 
 import java.io.IOException;
 import java.util.ArrayList;

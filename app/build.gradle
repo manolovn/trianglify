@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.manolovn.trianglify.sample"
+        applicationId "com.manolovn.sample"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.manolovn:trianglify:1.0.1@aar'
+    compile project(':colorbrewer')
 }

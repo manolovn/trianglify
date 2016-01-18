@@ -1,4 +1,4 @@
-package com.manolovn.trianglify.sample.exporter;
+package com.manolovn.sample.exporter;
 
 import android.content.Context;
 import android.content.Intent;

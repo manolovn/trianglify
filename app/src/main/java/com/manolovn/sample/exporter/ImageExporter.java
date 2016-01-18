@@ -1,9 +1,7 @@
-package com.manolovn.trianglify.sample.exporter;
+package com.manolovn.sample.exporter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.view.View;
 
 import java.io.File;
