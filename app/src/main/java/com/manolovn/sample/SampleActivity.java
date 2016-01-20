@@ -67,14 +67,11 @@ public class SampleActivity extends AppCompatActivity {
 
     private void initCellSizeControl() {
         cellSizeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progress;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress > 0) {
-                    trianglifyView.setDrawingCacheEnabled(false);
-                    trianglifyView.setCellSize(progress * 10);
-                    trianglifyView.setDrawingCacheEnabled(true);
-                }
-            }
+                this.progress = progress;
+            }            
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -83,19 +80,22 @@ public class SampleActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                if (progress > 0) {
+                    trianglifyView.setDrawingCacheEnabled(false);
+                    trianglifyView.setCellSize(progress * 10);
+                    trianglifyView.setDrawingCacheEnabled(true);
+                }                
             }
         });
     }
 
     private void initVarianceControl() {
         varianceControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progress;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                trianglifyView.setDrawingCacheEnabled(false);
-                trianglifyView.setVariance(progress);
-                trianglifyView.setDrawingCacheEnabled(true);
-            }
+                this.progress = progress;
+            }  
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -104,7 +104,9 @@ public class SampleActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                trianglifyView.setDrawingCacheEnabled(false);
+                trianglifyView.setVariance(progress);
+                trianglifyView.setDrawingCacheEnabled(true);
             }
         });
     }
