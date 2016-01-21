@@ -20,7 +20,7 @@ public class TriangleRenderer {
     private Paint trianglePaint;
     private ColorGenerator colorGenerator;
 
-    private Path path ;
+    private Path path;
 
     public TriangleRenderer() {
         initPaint();
@@ -42,12 +42,12 @@ public class TriangleRenderer {
         }
 
         path = new Path();
-        path.setFillType(Path.FillType.EVEN_ODD);        
+        path.setFillType(Path.FillType.EVEN_ODD);
     }
 
     public void render(Collection<Triangle> triangles, Canvas canvas) {
         colorGenerator.setCount(triangles.size());
-        for (Triangle triangle : triangles) {            
+        for (Triangle triangle : triangles) {
             path.reset();
 
             path.moveTo(triangle.a.x, triangle.a.y);
