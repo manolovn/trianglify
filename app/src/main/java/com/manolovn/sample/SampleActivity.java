@@ -105,7 +105,7 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 trianglifyView.setDrawingCacheEnabled(false);
-                trianglifyView.setVariance(progress);
+                trianglifyView.setVariance(progress + 2);
                 trianglifyView.setDrawingCacheEnabled(true);
             }
         });
