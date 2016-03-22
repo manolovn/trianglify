@@ -13,8 +13,9 @@ import java.util.Vector;
 public class RegularPointGenerator implements PointGenerator {
 
     private final Random random = new Random();
-    private final int cellSize;
-    private final int variance;
+
+    private int cellSize;
+    private int variance;
 
     private int bleedX = 0;
     private int bleedY = 0;
@@ -32,6 +33,14 @@ public class RegularPointGenerator implements PointGenerator {
     @Override
     public void setBleedY(int bleedY) {
         this.bleedY = bleedY;
+    }
+
+    public void setCellSize(int cellSize) {
+        this.cellSize = cellSize;
+    }
+
+    public void setVariance(int variance) {
+        this.variance = variance;
     }
 
     @Override
