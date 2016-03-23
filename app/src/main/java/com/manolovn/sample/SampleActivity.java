@@ -1,5 +1,9 @@
 package com.manolovn.sample;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,12 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.manolovn.colorbrewer.ColorBrewer;
-import com.manolovn.trianglify.TrianglifyView;
 import com.manolovn.sample.exporter.ImageExporter;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import com.manolovn.trianglify.TrianglifyView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -82,7 +82,7 @@ public class SampleActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (progress > 0) {
                     trianglifyView.setDrawingCacheEnabled(false);
-                    trianglifyView.setCellSize(progress * 10);
+                    trianglifyView.getDrawable().setCellSize(progress * 10);
                     trianglifyView.setDrawingCacheEnabled(true);
                 }                
             }
@@ -105,7 +105,7 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 trianglifyView.setDrawingCacheEnabled(false);
-                trianglifyView.setVariance(progress + 2);
+                trianglifyView.getDrawable().setVariance(progress + 2);
                 trianglifyView.setDrawingCacheEnabled(true);
             }
         });
@@ -127,7 +127,7 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 trianglifyView.setDrawingCacheEnabled(false);
-                trianglifyView.setColor(colors[position]);
+                trianglifyView.getDrawable().setColor(colors[position]);
                 trianglifyView.setDrawingCacheEnabled(true);
             }
 
