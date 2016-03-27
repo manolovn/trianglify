@@ -4,7 +4,7 @@
 
 Android view inspired by http://qrohlf.com/trianglify/ 
 
-![Demo Screenshot][1]
+![Demo Screenshot](./art/001.png | width=250)
 
 # Usage
 
@@ -60,5 +60,3 @@ trianglifyView.setVariance(75);
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-[1]: ./art/001.png | width=250
