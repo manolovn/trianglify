@@ -61,4 +61,4 @@ trianglifyView.setVariance(75);
     See the License for the specific language governing permissions and
     limitations under the License.
 
-[1]: ./art/001.png
+[1]: ./art/001.png | width=250
