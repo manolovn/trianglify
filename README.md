@@ -4,7 +4,7 @@
 
 Android view inspired by http://qrohlf.com/trianglify/ 
 
-![Demo Screenshot](./art/001.png | width=250)
+<img src="./art/001.png " alt="Demo Screenshot" width="250" />
 
 # Usage
 
