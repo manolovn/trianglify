@@ -13,7 +13,6 @@ Add the dependency
 ```groovy
 dependencies {
     compile 'com.manolovn:trianglify:1.0.5'
-    compile 'com.manolovn:colorbrewer:1.0.0'
 }
 ```
 

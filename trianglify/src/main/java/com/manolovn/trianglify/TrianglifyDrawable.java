@@ -9,17 +9,18 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 
-import com.manolovn.colorbrewer.ColorBrewer;
 import com.manolovn.trianglify.domain.Point;
 import com.manolovn.trianglify.domain.Triangle;
-import com.manolovn.trianglify.generator.color.BrewerColorGenerator;
+import com.manolovn.trianglify.generator.color.ColorGenerator;
 import com.manolovn.trianglify.generator.point.RegularPointGenerator;
 import com.manolovn.trianglify.renderer.TriangleRenderer;
 import com.manolovn.trianglify.triangulator.DelaunayTriangulator;
 import com.manolovn.trianglify.triangulator.Triangulator;
 
 /**
- * Created by doug on 3/17/16.
+ * Trianglify drawable
+ *
+ * @author doug
  */
 public class TrianglifyDrawable extends Drawable {
 
@@ -33,6 +34,7 @@ public class TrianglifyDrawable extends Drawable {
     private Vector<Point> points;
     private Vector<Triangle> triangles;
 
+    private final Object lock = new Object();
     // Used with triangulateInBackground
     Boolean ready = false;
 
@@ -85,8 +87,8 @@ public class TrianglifyDrawable extends Drawable {
         triangulateInBackground();
     }
 
-    public void setColor(ColorBrewer color) {
-        triangleRenderer = new TriangleRenderer(new BrewerColorGenerator(color));
+    public void setColorGenerator(ColorGenerator colorGenerator) {
+        triangleRenderer = new TriangleRenderer(colorGenerator);
         triangulateInBackground();
     }
 
@@ -94,8 +96,6 @@ public class TrianglifyDrawable extends Drawable {
         TriangulateAsyncTask task = new TriangulateAsyncTask();
         task.execute();
     }
-
-    private Object lock = new Object();
 
     private class TriangulateAsyncTask extends AsyncTask<Void, Void, Void> {
 

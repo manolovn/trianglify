@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.manolovn.colorbrewer.ColorBrewer;
+import com.manolovn.sample.color.BrewerColorGenerator;
 import com.manolovn.sample.exporter.ImageExporter;
 import com.manolovn.trianglify.TrianglifyView;
 
@@ -127,7 +128,8 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 trianglifyView.setDrawingCacheEnabled(false);
-                trianglifyView.getDrawable().setColor(colors[position]);
+                trianglifyView.getDrawable()
+                        .setColorGenerator(new BrewerColorGenerator(colors[position]));
                 trianglifyView.setDrawingCacheEnabled(true);
             }
 

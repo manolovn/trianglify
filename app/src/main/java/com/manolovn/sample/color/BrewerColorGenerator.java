@@ -1,6 +1,7 @@
-package com.manolovn.trianglify.generator.color;
+package com.manolovn.sample.color;
 
 import com.manolovn.colorbrewer.ColorBrewer;
+import com.manolovn.trianglify.generator.color.ColorGenerator;
 
 /**
  * Color brewer color generator
@@ -12,10 +13,6 @@ public class BrewerColorGenerator implements ColorGenerator {
     private ColorBrewer palette;
     private int index = 0;
     private int[] colors;
-
-    public BrewerColorGenerator() {
-        palette = ColorBrewer.Greys;
-    }
 
     public BrewerColorGenerator(ColorBrewer palette) {
         this.palette = palette;

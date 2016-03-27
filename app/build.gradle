@@ -23,9 +23,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.manolovn:colorbrewer:1.0.1'
     compile project(':trianglify')
-    compile 'com.manolovn:colorbrewer:1.0.0'
 }

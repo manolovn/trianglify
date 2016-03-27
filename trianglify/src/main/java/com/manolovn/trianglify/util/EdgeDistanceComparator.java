@@ -1,5 +1,7 @@
 package com.manolovn.trianglify.util;
 
+import android.support.annotation.NonNull;
+
 import com.manolovn.trianglify.domain.Edge;
 
 /**
@@ -18,7 +20,7 @@ public class EdgeDistanceComparator implements Comparable<EdgeDistanceComparator
     }
 
     @Override
-    public int compareTo(EdgeDistanceComparator o) {
+    public int compareTo(@NonNull EdgeDistanceComparator o) {
         if (o.distance == distance) {
             return 0;
         } else if (o.distance < distance) {
