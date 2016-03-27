@@ -1,4 +1,5 @@
-# Trianglify [![Build Status](https://travis-ci.org/manolovn/trianglify.svg?branch=master)](https://travis-ci.org/manolovn/trianglify)
+# Trianglify
+[![Build Status](https://travis-ci.org/manolovn/trianglify.svg?branch=master)](https://travis-ci.org/manolovn/trianglify)
 [![Maven Central](https://img.shields.io/maven-central/v/com.manolovn/trianglify.svg)](https://maven-badges.herokuapp.com/maven-central/com.manolovn/trianglify)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Trianglify-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3014)
 
