@@ -1,7 +1,5 @@
 package com.manolovn.trianglify;
 
-import java.util.Vector;
-
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
@@ -16,6 +14,8 @@ import com.manolovn.trianglify.generator.point.RegularPointGenerator;
 import com.manolovn.trianglify.renderer.TriangleRenderer;
 import com.manolovn.trianglify.triangulator.DelaunayTriangulator;
 import com.manolovn.trianglify.triangulator.Triangulator;
+
+import java.util.Vector;
 
 /**
  * Trianglify drawable
@@ -38,14 +38,19 @@ public class TrianglifyDrawable extends Drawable {
     // Used with triangulateInBackground
     Boolean ready = false;
 
-    public TrianglifyDrawable(int cellSize, int variance, int bleedX, int bleedY) {
+    public TrianglifyDrawable(
+            int cellSize,
+            int variance,
+            int bleedX,
+            int bleedY,
+            ColorGenerator colorGenerator) {
         super();
 
         pointGenerator = new RegularPointGenerator(cellSize, variance);
         pointGenerator.setBleedX(bleedX);
         pointGenerator.setBleedY(bleedY);
         triangulator = new DelaunayTriangulator();
-        triangleRenderer = new TriangleRenderer();
+        triangleRenderer = new TriangleRenderer(colorGenerator);
     }
 
     @Override

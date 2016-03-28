@@ -36,7 +36,8 @@ Cell size, variance and bleeds can be initialized from layout:
             trianglify:cellSize="175"
             trianglify:variance="75"
             trianglify:bleedX="50"
-            trianglify:bleedY="50"/>
+            trianglify:bleedY="50"
+            trianglify:colorGenerator="com.sample.color.MyCoolColorGenerator"/>
 ```
 
 or using setters (see sample for more info):
@@ -44,6 +45,7 @@ or using setters (see sample for more info):
 ```java
 trianglifyView.setCellSize(175);
 trianglifyView.setVariance(75);
+trianglifyView.setColorGenerator(new AnyColorGenerator());
 ```
 
 # License

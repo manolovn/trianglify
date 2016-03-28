@@ -5,6 +5,10 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.manolovn.trianglify.generator.color.ColorGenerator;
+
+import java.lang.reflect.Constructor;
+
 /**
  * Trianglify view
  *
@@ -30,6 +34,7 @@ public class TrianglifyView extends View {
     }
 
     private void init(AttributeSet attrs) {
+        ColorGenerator colorGenerator = Default.colorGenerator;
         int cellSize = Default.cellSize;
         int variance = Default.variance;
         int bleedX = Default.bleedX;
@@ -37,19 +42,21 @@ public class TrianglifyView extends View {
 
         if (attrs != null) {
             TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs,
-                R.styleable.TrianglifyView, 0, 0);
+                    R.styleable.TrianglifyView, 0, 0);
 
             try {
                 cellSize = a.getInteger(R.styleable.TrianglifyView_cellSize, cellSize);
                 variance = a.getInteger(R.styleable.TrianglifyView_variance, variance);
                 bleedX = a.getInteger(R.styleable.TrianglifyView_bleedX, bleedX);
                 bleedY = a.getInteger(R.styleable.TrianglifyView_bleedY, bleedY);
+                colorGenerator = getColorGeneratorByName(
+                        a.getString(R.styleable.TrianglifyView_colorGenerator));
             } finally {
                 a.recycle();
             }
         }
 
-        drawable = new TrianglifyDrawable(cellSize, variance, bleedX, bleedY);
+        drawable = new TrianglifyDrawable(cellSize, variance, bleedX, bleedY, colorGenerator);
         setBackgroundDrawable(drawable);
     }
 
@@ -61,5 +68,19 @@ public class TrianglifyView extends View {
 
     public TrianglifyDrawable getDrawable() {
         return drawable;
+    }
+
+    private ColorGenerator getColorGeneratorByName(String className) {
+        try {
+            Class<?> clazz = Class.forName(className);
+            Constructor<?> constructor = clazz.getConstructor();
+            Object instace = constructor.newInstance();
+            if (instace instanceof ColorGenerator) {
+                return (ColorGenerator) instace;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

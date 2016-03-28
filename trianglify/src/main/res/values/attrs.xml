@@ -5,5 +5,6 @@
         <attr name="variance" format="integer" />
         <attr name="bleedX" format="integer" />
         <attr name="bleedY" format="integer" />
+        <attr name="colorGenerator" format="string" />
     </declare-styleable>
 </resources>
