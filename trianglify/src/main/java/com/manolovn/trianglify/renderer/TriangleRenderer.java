@@ -3,7 +3,6 @@ package com.manolovn.trianglify.renderer;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.v4.graphics.ColorUtils;
 
 import com.manolovn.trianglify.domain.Triangle;
 import com.manolovn.trianglify.generator.color.ColorGenerator;
