@@ -3,6 +3,7 @@ package com.manolovn.trianglify.renderer;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.support.v4.graphics.ColorUtils;
 
 import com.manolovn.trianglify.domain.Triangle;
 import com.manolovn.trianglify.generator.color.ColorGenerator;
@@ -57,7 +58,17 @@ public class TriangleRenderer {
 
             path.close();
 
-            trianglePaint.setColor(colorGenerator.nextColor());
+            int color=colorGenerator.nextColor();
+
+            trianglePaint.setStyle(Paint.Style.FILL);
+            trianglePaint.setColor(color);
+            canvas.drawPath(path, trianglePaint);
+
+            trianglePaint.setStyle(Paint.Style.STROKE);
+            trianglePaint.setColor(color);
+            trianglePaint.setStrokeWidth(2);
+            trianglePaint.setStrokeCap(Paint.Cap.SQUARE);
+            trianglePaint.setStrokeJoin(Paint.Join.BEVEL);
             canvas.drawPath(path, trianglePaint);
         }
     }
