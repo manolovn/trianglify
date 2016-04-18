@@ -57,7 +57,7 @@ public class TriangleRenderer {
 
             path.close();
 
-            int color=colorGenerator.nextColor();
+            int color = colorGenerator.nextColor();
 
             trianglePaint.setStyle(Paint.Style.FILL);
             trianglePaint.setColor(color);
