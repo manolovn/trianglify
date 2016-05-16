@@ -4,4 +4,7 @@
     <string name="varianceControlLabel">VARIANCE</string>
     <string name="colorControlLabel">COLOR</string>
     <string name="action_export_to_image">Export to image</string>
+    <string name="image_generated_success">Image generated successfully</string>
+    <string name="image_generated_failed">EXPORTING FAILED</string>
+    <string name="save">Save to gallery</string>
 </resources>

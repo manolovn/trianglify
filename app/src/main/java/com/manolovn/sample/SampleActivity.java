@@ -1,15 +1,11 @@
 package com.manolovn.sample;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,6 +14,10 @@ import com.manolovn.colorbrewer.ColorBrewer;
 import com.manolovn.sample.color.BrewerColorGenerator;
 import com.manolovn.sample.exporter.ImageExporter;
 import com.manolovn.trianglify.TrianglifyView;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,8 +33,8 @@ public class SampleActivity extends AppCompatActivity {
     SeekBar varianceControl;
     @Bind(R.id.colorControl)
     Spinner colorControl;
-    @Bind(R.id.saveToGalleryButton)
-    Button saveToGallery;
+    @Bind(R.id.controlsContainer)
+    ViewGroup controlsContainer;
 
     private ImageExporter exporter;
 
@@ -57,22 +57,32 @@ public class SampleActivity extends AppCompatActivity {
         exportViewToImage();
     }
 
+    @OnClick(R.id.toggleFullscreen)
+    void toggleFullScreen() {
+        if (controlsContainer.getVisibility() == View.GONE) {
+            controlsContainer.setVisibility(View.VISIBLE);
+        } else if (controlsContainer.getVisibility() == View.VISIBLE) {
+            controlsContainer.setVisibility(View.GONE);
+        }
+    }
+
     private void exportViewToImage() {
         try {
             exporter.exportFromView(this, trianglifyView);
-            Toast.makeText(this, "Image generated succesfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.image_generated_success, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
-            Toast.makeText(this, "EXPORTING FAILED", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.image_generated_failed, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void initCellSizeControl() {
         cellSizeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progress;
+
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 this.progress = progress;
-            }            
+            }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -85,7 +95,7 @@ public class SampleActivity extends AppCompatActivity {
                     trianglifyView.setDrawingCacheEnabled(false);
                     trianglifyView.getDrawable().setCellSize(progress * 10);
                     trianglifyView.setDrawingCacheEnabled(true);
-                }                
+                }
             }
         });
     }
@@ -93,10 +103,11 @@ public class SampleActivity extends AppCompatActivity {
     private void initVarianceControl() {
         varianceControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progress;
+
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 this.progress = progress;
-            }  
+            }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
