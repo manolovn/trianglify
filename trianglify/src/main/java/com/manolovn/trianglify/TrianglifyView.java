@@ -71,6 +71,9 @@ public class TrianglifyView extends View {
     }
 
     private ColorGenerator getColorGeneratorByName(String className) {
+        if (className == null || className.isEmpty()) {
+            return null;
+        }
         try {
             Class<?> clazz = Class.forName(className);
             Constructor<?> constructor = clazz.getConstructor();
