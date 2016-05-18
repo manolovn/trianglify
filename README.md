@@ -26,7 +26,7 @@ Just add the view to your layout:
             android:layout_height="match_parent"/>
 ```
 
-Cell size, variance and bleeds can be initialized from layout:
+Cell size, variance, bleeds, color generator and point generator can be initialized from layout:
 
 ```xml
 <com.manolovn.trianglify.TrianglifyView
@@ -37,7 +37,8 @@ Cell size, variance and bleeds can be initialized from layout:
             trianglify:variance="75"
             trianglify:bleedX="50"
             trianglify:bleedY="50"
-            trianglify:colorGenerator="com.sample.color.MyCoolColorGenerator"/>
+            trianglify:colorGenerator="com.sample.color.MyCoolColorGenerator"
+            trianglify:pointGenerator="com.sample.color.MyCoolPointGenerator"/>
 ```
 
 or using setters (see sample for more info):
@@ -46,7 +47,10 @@ or using setters (see sample for more info):
 trianglifyView.setCellSize(175);
 trianglifyView.setVariance(75);
 trianglifyView.setColorGenerator(new AnyColorGenerator());
+trianglifyView.setPointGenerator(new AnyPointGenerator());
 ```
+
+In the sample, you can find an example of ColorGenerator and an example of how to use differents types of PointGenerator. In the component are included two: RegularPointGenerator (for a grid distribution) and CircularPointGenerator (for a concentric circles distribution).
 
 # License
 
