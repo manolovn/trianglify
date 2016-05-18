@@ -13,7 +13,7 @@ Add the dependency
 
 ```groovy
 dependencies {
-    compile 'com.manolovn:trianglify:1.0.5'
+    compile 'com.manolovn:trianglify:1.1.0'
 }
 ```
 
