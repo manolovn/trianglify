@@ -14,15 +14,11 @@ public class RegularPointGenerator implements PointGenerator {
 
     private final Random random = new Random();
 
-    private int cellSize;
-    private int variance;
-
     private int bleedX = 0;
     private int bleedY = 0;
 
-    public RegularPointGenerator(int cellSize, int variance) {
-        this.cellSize = cellSize;
-        this.variance = variance;
+    public RegularPointGenerator() {
+
     }
 
     @Override
@@ -35,16 +31,8 @@ public class RegularPointGenerator implements PointGenerator {
         this.bleedY = bleedY;
     }
 
-    public void setCellSize(int cellSize) {
-        this.cellSize = cellSize;
-    }
-
-    public void setVariance(int variance) {
-        this.variance = variance;
-    }
-
     @Override
-    public Vector<Point> generatePoints(int width, int height) {
+    public Vector<Point> generatePoints(int width, int height, int cellSize, int variance) {
         Vector<Point> points = new Vector<>();
 
         for (int j = -bleedY; j < height + bleedY; j += cellSize) {

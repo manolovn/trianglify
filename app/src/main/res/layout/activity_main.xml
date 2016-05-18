@@ -51,6 +51,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/points_distribution" />
+
+        <Spinner
+            android:id="@+id/pointsControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <Button
             android:id="@+id/saveToGalleryButton"
             android:layout_width="match_parent"

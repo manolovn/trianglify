@@ -10,7 +10,7 @@ import android.os.AsyncTask;
 import com.manolovn.trianglify.domain.Point;
 import com.manolovn.trianglify.domain.Triangle;
 import com.manolovn.trianglify.generator.color.ColorGenerator;
-import com.manolovn.trianglify.generator.point.RegularPointGenerator;
+import com.manolovn.trianglify.generator.point.PointGenerator;
 import com.manolovn.trianglify.renderer.TriangleRenderer;
 import com.manolovn.trianglify.triangulator.DelaunayTriangulator;
 import com.manolovn.trianglify.triangulator.Triangulator;
@@ -24,12 +24,16 @@ import java.util.Vector;
  */
 public class TrianglifyDrawable extends Drawable {
 
-    private RegularPointGenerator pointGenerator;
+    private PointGenerator pointGenerator;
     private Triangulator triangulator;
     private TriangleRenderer triangleRenderer;
 
     private int width;
     private int height;
+    private int bleedX;
+    private int bleedY;
+    private int cellSize;
+    private int variance;
 
     private Vector<Point> points;
     private Vector<Triangle> triangles;
@@ -39,16 +43,20 @@ public class TrianglifyDrawable extends Drawable {
     Boolean ready = false;
 
     public TrianglifyDrawable(
-            int cellSize,
-            int variance,
             int bleedX,
             int bleedY,
-            ColorGenerator colorGenerator) {
+            int cellSize,
+            int variance,
+            ColorGenerator colorGenerator,
+            PointGenerator pointGenerator) {
         super();
 
-        pointGenerator = new RegularPointGenerator(cellSize, variance);
-        pointGenerator.setBleedX(bleedX);
-        pointGenerator.setBleedY(bleedY);
+        this.bleedX = bleedX;
+        this.bleedY = bleedY;
+        this.cellSize = cellSize;
+        this.variance = variance;
+        this.pointGenerator = pointGenerator;
+
         triangulator = new DelaunayTriangulator();
         triangleRenderer = new TriangleRenderer(colorGenerator);
     }
@@ -83,17 +91,22 @@ public class TrianglifyDrawable extends Drawable {
     }
 
     public void setVariance(int variance) {
-        pointGenerator.setVariance(variance);
+        this.variance = variance;
         triangulateInBackground();
     }
 
     public void setCellSize(int cellSize) {
-        pointGenerator.setCellSize(cellSize);
+        this.cellSize = cellSize;
         triangulateInBackground();
     }
 
     public void setColorGenerator(ColorGenerator colorGenerator) {
         triangleRenderer = new TriangleRenderer(colorGenerator);
+        triangulateInBackground();
+    }
+
+    public void setPointGenerator(PointGenerator pointGenerator) {
+        this.pointGenerator = pointGenerator;
         triangulateInBackground();
     }
 
@@ -108,7 +121,9 @@ public class TrianglifyDrawable extends Drawable {
         protected Void doInBackground(Void... params) {
             synchronized (lock) {
                 ready = false;
-                points = pointGenerator.generatePoints(width, height);
+                pointGenerator.setBleedX(bleedX);
+                pointGenerator.setBleedY(bleedY);
+                points = pointGenerator.generatePoints(width, height, cellSize, variance);
                 triangles = triangulator.triangulate(points);
                 ready = true;
             }

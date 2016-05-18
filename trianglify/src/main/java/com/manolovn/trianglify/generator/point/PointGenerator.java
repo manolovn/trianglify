@@ -11,7 +11,7 @@ import java.util.Vector;
  */
 public interface PointGenerator {
 
-    Vector<Point> generatePoints(int width, int height);
+    Vector<Point> generatePoints(int width, int height, int cellSize, int variance);
 
     void setBleedX(int bleedX);
 

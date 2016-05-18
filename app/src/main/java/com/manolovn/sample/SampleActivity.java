@@ -13,7 +13,12 @@ import android.widget.Toast;
 import com.manolovn.colorbrewer.ColorBrewer;
 import com.manolovn.sample.color.BrewerColorGenerator;
 import com.manolovn.sample.exporter.ImageExporter;
+import com.manolovn.sample.point.PointGeneratorFactory;
+import com.manolovn.sample.point.PointGeneratorFactory.Type;
 import com.manolovn.trianglify.TrianglifyView;
+import com.manolovn.trianglify.generator.point.CircularPointGenerator;
+import com.manolovn.trianglify.generator.point.PointGenerator;
+import com.manolovn.trianglify.generator.point.RegularPointGenerator;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +38,8 @@ public class SampleActivity extends AppCompatActivity {
     SeekBar varianceControl;
     @Bind(R.id.colorControl)
     Spinner colorControl;
+    @Bind(R.id.pointsControl)
+    Spinner pointsControl;
     @Bind(R.id.controlsContainer)
     ViewGroup controlsContainer;
 
@@ -47,6 +54,7 @@ public class SampleActivity extends AppCompatActivity {
         initCellSizeControl();
         initVarianceControl();
         initColorControl();
+        initPointsControl();
 
         trianglifyView.setDrawingCacheEnabled(true);
         exporter = new ImageExporter();
@@ -141,6 +149,33 @@ public class SampleActivity extends AppCompatActivity {
                 trianglifyView.setDrawingCacheEnabled(false);
                 trianglifyView.getDrawable()
                         .setColorGenerator(new BrewerColorGenerator(colors[position]));
+                trianglifyView.setDrawingCacheEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void initPointsControl() {
+        final List<String> list = new ArrayList<>(Type.values().length);
+        for (Type type : Type.values()) {
+            list.add(type.toString());
+        }
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pointsControl.setAdapter(adapter);
+
+        pointsControl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                trianglifyView.setDrawingCacheEnabled(false);
+                trianglifyView.getDrawable().setPointGenerator(
+                        PointGeneratorFactory.from(list.get(position)));
                 trianglifyView.setDrawingCacheEnabled(true);
             }
 

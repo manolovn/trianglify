@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.manolovn.trianglify.generator.color.ColorGenerator;
-
-import java.lang.reflect.Constructor;
+import com.manolovn.trianglify.generator.point.PointGenerator;
+import com.manolovn.trianglify.util.ClassUtil;
 
 /**
  * Trianglify view
@@ -35,6 +35,7 @@ public class TrianglifyView extends View {
 
     private void init(AttributeSet attrs) {
         ColorGenerator colorGenerator = Default.colorGenerator;
+        PointGenerator pointGenerator = Default.pointGenerator;
         int cellSize = Default.cellSize;
         int variance = Default.variance;
         int bleedX = Default.bleedX;
@@ -51,12 +52,15 @@ public class TrianglifyView extends View {
                 bleedY = a.getInteger(R.styleable.TrianglifyView_bleedY, bleedY);
                 colorGenerator = getColorGeneratorByName(
                         a.getString(R.styleable.TrianglifyView_colorGenerator));
+                pointGenerator = getPointGeneratorByName(
+                        a.getString(R.styleable.TrianglifyView_pointGenerator));
             } finally {
                 a.recycle();
             }
         }
 
-        drawable = new TrianglifyDrawable(cellSize, variance, bleedX, bleedY, colorGenerator);
+        drawable = new TrianglifyDrawable(bleedX, bleedY, cellSize, variance, colorGenerator,
+                pointGenerator);
         setBackgroundDrawable(drawable);
     }
 
@@ -74,16 +78,13 @@ public class TrianglifyView extends View {
         if (className == null || className.isEmpty()) {
             return null;
         }
-        try {
-            Class<?> clazz = Class.forName(className);
-            Constructor<?> constructor = clazz.getConstructor();
-            Object instace = constructor.newInstance();
-            if (instace instanceof ColorGenerator) {
-                return (ColorGenerator) instace;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        return ClassUtil.getClassByName(className, ColorGenerator.class);
+    }
+
+    private PointGenerator getPointGeneratorByName(String className) {
+        if (className == null || className.isEmpty()) {
+            return Default.pointGenerator;
         }
-        return null;
+        return ClassUtil.getClassByName(className, PointGenerator.class);
     }
 }
