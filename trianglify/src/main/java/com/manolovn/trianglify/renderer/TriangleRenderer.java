@@ -22,10 +22,6 @@ public class TriangleRenderer {
 
     private Path path;
 
-    public TriangleRenderer() {
-        initPaint();
-    }
-
     public TriangleRenderer(ColorGenerator colorGenerator) {
         this.colorGenerator = colorGenerator;
 
@@ -36,6 +32,9 @@ public class TriangleRenderer {
         trianglePaint = new Paint();
         trianglePaint.setStyle(Paint.Style.FILL);
         trianglePaint.setAntiAlias(true);
+        trianglePaint.setStrokeWidth(2);
+        trianglePaint.setStrokeCap(Paint.Cap.SQUARE);
+        trianglePaint.setStrokeJoin(Paint.Join.BEVEL);
 
         if (colorGenerator == null) {
             colorGenerator = new RandomColorGenerator();
@@ -59,15 +58,7 @@ public class TriangleRenderer {
 
             int color = colorGenerator.nextColor();
 
-            trianglePaint.setStyle(Paint.Style.FILL);
             trianglePaint.setColor(color);
-            canvas.drawPath(path, trianglePaint);
-
-            trianglePaint.setStyle(Paint.Style.STROKE);
-            trianglePaint.setColor(color);
-            trianglePaint.setStrokeWidth(2);
-            trianglePaint.setStrokeCap(Paint.Cap.SQUARE);
-            trianglePaint.setStrokeJoin(Paint.Join.BEVEL);
             canvas.drawPath(path, trianglePaint);
         }
     }
