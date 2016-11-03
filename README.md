@@ -44,10 +44,10 @@ Cell size, variance, bleeds, color generator and point generator can be initiali
 or using setters (see sample for more info):
 
 ```java
-trianglifyView.setCellSize(175);
-trianglifyView.setVariance(75);
-trianglifyView.setColorGenerator(new AnyColorGenerator());
-trianglifyView.setPointGenerator(new AnyPointGenerator());
+trianglifyView.getDrawable().setCellSize(175);
+trianglifyView.getDrawable().setVariance(75);
+trianglifyView.getDrawable().setColorGenerator(new AnyColorGenerator());
+trianglifyView.getDrawable().setPointGenerator(new AnyPointGenerator());
 ```
 
 In the sample, you can find an example of ColorGenerator and an example of how to use differents types of PointGenerator. In the component are included two: RegularPointGenerator (for a grid distribution) and CircularPointGenerator (for a concentric circles distribution).
