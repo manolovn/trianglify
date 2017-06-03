@@ -124,7 +124,9 @@ public class TrianglifyDrawable extends Drawable {
                 pointGenerator.setBleedX(bleedX);
                 pointGenerator.setBleedY(bleedY);
                 points = pointGenerator.generatePoints(width, height, cellSize, variance);
-                triangles = triangulator.triangulate(points);
+                if(points.size() >= 3) {
+                    triangles = triangulator.triangulate(points);
+                }
                 ready = true;
             }
             return null;
