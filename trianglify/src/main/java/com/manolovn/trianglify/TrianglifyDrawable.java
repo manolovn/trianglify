@@ -70,7 +70,7 @@ public class TrianglifyDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        if (ready) {
+        if (ready && triangles != null) {
             triangleRenderer.render(triangles, canvas);
         }
     }
