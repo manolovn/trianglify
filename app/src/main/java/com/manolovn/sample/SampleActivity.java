@@ -16,31 +16,28 @@ import com.manolovn.sample.exporter.ImageExporter;
 import com.manolovn.sample.point.PointGeneratorFactory;
 import com.manolovn.sample.point.PointGeneratorFactory.Type;
 import com.manolovn.trianglify.TrianglifyView;
-import com.manolovn.trianglify.generator.point.CircularPointGenerator;
-import com.manolovn.trianglify.generator.point.PointGenerator;
-import com.manolovn.trianglify.generator.point.RegularPointGenerator;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SampleActivity extends AppCompatActivity {
 
-    @Bind(R.id.trianglify)
+    @BindView(R.id.trianglify)
     TrianglifyView trianglifyView;
-    @Bind(R.id.cellSizeControl)
+    @BindView(R.id.cellSizeControl)
     SeekBar cellSizeControl;
-    @Bind(R.id.varianceControl)
+    @BindView(R.id.varianceControl)
     SeekBar varianceControl;
-    @Bind(R.id.colorControl)
+    @BindView(R.id.colorControl)
     Spinner colorControl;
-    @Bind(R.id.pointsControl)
+    @BindView(R.id.pointsControl)
     Spinner pointsControl;
-    @Bind(R.id.controlsContainer)
+    @BindView(R.id.controlsContainer)
     ViewGroup controlsContainer;
 
     private ImageExporter exporter;
